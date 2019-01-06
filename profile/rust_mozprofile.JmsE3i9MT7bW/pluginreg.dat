@@ -1,0 +1,23 @@
+Generated File. Do not edit.
+
+[HEADER]
+Version|0.19t|$
+Arch|x86_64-msvc|$
+
+[PLUGINS]
+
+[INVALID]
+C:\Program Files\VideoLAN\VLC\npvlc.dll|$
+1527627386000|$
+C:\Program Files\Microsoft Office\root\Office16\NPSPWRAP.DLL|$
+1536666386536|$
+C:\Program Files\Microsoft Silverlight\5.1.50907.0\npctrl.dll|$
+1493881322000|$
+C:\Program Files\Microsoft Silverlight\5.1.50907.0\npctrlui.dll|$
+1493881322000|$
+C:\Program Files\Java\jre1.8.0_191\bin\plugin2\npjp2.dll|$
+1539964195890|$
+C:\Program Files\Java\jre1.8.0_191\bin\dtplugin\npdeployJava1.dll|$
+1539964195732|$
+C:\Users\davek\AppData\Roaming\Zoom\bin\npzoomplugin.dll|$
+1534539637016|$
