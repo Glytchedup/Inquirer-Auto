@@ -4,7 +4,8 @@ var password = process.env.PASSWORD;
 var url = process.env.URL;
 
 //extracts array
-var marsha = require("./data").extract;
+// var marsha = require("./data").extract;
+var marsha = require("./data.json");
 
 //Webdriver setup
 var assert = require("assert");

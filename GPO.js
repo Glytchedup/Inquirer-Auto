@@ -1,11 +1,16 @@
+var credentials = require('./login.json');
+
 //credentials in app-env
-var eid = process.env.EID;
-var password = process.env.PASSWORD;
+// var eid = process.env.EID;
+// var password = process.env.PASSWORD;
+var eid = credentials.eid;
+var password = credentials.password;
 var url = process.env.URL;
 var gpourl = process.env.GPOURL;
 
 //require array
-var marsha = require("./data").marsha;
+// var marsha = require("./data").marsha;
+var marsha = require("./data.json");
 
 //Webdriver setup
 var assert = require("assert");
