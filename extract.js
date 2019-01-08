@@ -1,6 +1,8 @@
 //credentials in app-env
-var eid = process.env.EID;
-var password = process.env.PASSWORD;
+var eid = credentials.eid;
+var password = credentials.password;
+// var eid = process.env.EID;
+// var password = process.env.PASSWORD;
 var url = process.env.URL;
 
 //extracts array
