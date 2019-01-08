@@ -102,8 +102,33 @@ function askID() {
 }
 
 function mochaGPO() {
-  console.log('now call mocha GPO.js')
-  console.log('Current hotels:', hotelsarray.join(', '));
+  var Mocha = require('mocha');
+
+  var mocha = new Mocha({});
+
+  mocha.addFile('./GPO.js')
+
+  mocha.run()
+    .on('test', function (test) {
+      console.log('Test started: ' + test.title);
+    })
+    .on('test end', function (test) {
+      console.log('Test done: ' + test.title);
+    })
+    .on('pass', function (test) {
+      console.log('Test passed');
+      console.log(test);
+    })
+    .on('fail', function (test, err) {
+      console.log('Test fail');
+      console.log(test);
+      console.log(err);
+    })
+    .on('end', function () {
+      console.log('All done');
+    });
+  // console.log('now call mocha GPO.js')
+  // console.log('Current hotels:', hotelsarray.join(', '));
 }
 
 
@@ -171,7 +196,31 @@ function askIDExtract() {
 }
 
 function mochaExtract() {
+  var Mocha = require('mocha');
 
-  console.log('now call mocha Extract.js')
-  console.log('Current hotels:', hotelsarray.join(', '));
+  var mocha = new Mocha({});
+
+  mocha.addFile('./GPO.js')
+
+  mocha.run()
+    .on('test', function (test) {
+      console.log('Test started: ' + test.title);
+    })
+    .on('test end', function (test) {
+      console.log('Test done: ' + test.title);
+    })
+    .on('pass', function (test) {
+      console.log('Test passed');
+      console.log(test);
+    })
+    .on('fail', function (test, err) {
+      console.log('Test fail');
+      console.log(test);
+      console.log(err);
+    })
+    .on('end', function () {
+      console.log('All done');
+    });
+  // console.log('now call mocha Extract.js')
+  // console.log('Current hotels:', hotelsarray.join(', '));
 }
