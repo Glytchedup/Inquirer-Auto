@@ -11,5 +11,3 @@ function folderExtract () {
     
     !fs.existsSync(dir) && fs.mkdirSync(dir);
     };
-
-folderExtract();

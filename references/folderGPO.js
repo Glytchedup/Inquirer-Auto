@@ -12,6 +12,4 @@ function folderGPO () {
     !fs.existsSync(dir) && fs.mkdirSync(dir);
     };
 
-folderGPO();
-
    

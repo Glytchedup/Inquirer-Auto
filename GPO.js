@@ -8,6 +8,13 @@ var password = credentials.password;
 var url = process.env.URL;
 var gpourl = process.env.GPOURL;
 
+var fs = require('fs');
+var moment = require('moment');
+var path = require('path');
+var userName = process.env['USERPROFILE'].split(path.sep)[2];
+var loginId = path.join(userName);
+
+
 //require array
 // var marsha = require("./data").marsha;
 var marsha = require("./data.json");
@@ -22,7 +29,7 @@ const timeOut = 900000;
 var extract;
 var firefox = require("selenium-webdriver/firefox");
 var path = require("path");
-var myDownloadFolder = path.normalize(__dirname + "/../Downloads/");
+var myDownloadFolder = path.normalize('C:/Users/' + loginId + '/Desktop/GPO ' + moment().format('MM-DD-YYYY') + '\\');
 
 // Create Firefox Profile
 var profile = new firefox.Profile();
@@ -38,8 +45,13 @@ profile.setPreference("pdfjs.disabled", true);
 var options = new firefox.Options().setProfile(profile);
 var driver = new webdriver.Builder();
 
-//Array of codes
-// var marsha = ["SJCCA", "SFOSB", "FATCH", "FATRI", "SFOFC"];
+test.before( function () {
+  
+  var dir = 'C:/Users/' + loginId + '/Desktop/GPO ' + moment().format('MM-DD-YYYY') + '\\';
+  
+  !fs.existsSync(dir) && fs.mkdirSync(dir);
+  });
+
 
 // //Build Webdriver with Firefox profile setup
 test.describe("gpoShop", function() {

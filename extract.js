@@ -24,7 +24,7 @@ var webdriver = require("selenium-webdriver"),
   By = webdriver.By,
   until = webdriver.until;
 var test = require("selenium-webdriver/testing");
-const timeOut = 90000;
+const timeOut = 1000000;
 var extract;
 var firefox = require("selenium-webdriver/firefox");
 var path = require("path");
@@ -59,11 +59,6 @@ profile.setPreference(
     
     //Create folder for extracts
     test.before( function () {
-      // var fs = require('fs');
-      // var moment = require('moment');
-      // var path = require('path');
-      // var userName = process.env['USERPROFILE'].split(path.sep)[2];
-      // var loginId = path.join(userName);
   
       var dir = 'C:/Users/' + loginId + '/Desktop/Extracts ' + moment().format('MM-DD-YYYY') + '\\';
       
@@ -116,7 +111,7 @@ profile.setPreference(
         driver.findElement(By.css("span.icon.settings-button")).click();
         driver.findElement(By.css("#dijit_MenuItem_3_text")).click();
 
-        driver.sleep(45000).then(function test() {
+        driver.sleep(30000).then(function test() {
           const testFolder = myDownloadFolder;
           // const testFolder = dir;
           const fs = require("fs");

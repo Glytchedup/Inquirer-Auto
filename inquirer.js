@@ -3,7 +3,6 @@ var fs = require('fs');
 var {
   Observable
 } = require('rxjs');
-import * as folderMaker from './folder_makers'
 var hotelsarray = [];
 
 runSearch();
@@ -13,7 +12,7 @@ function runSearch() {
     .prompt({
       name: "action",
       type: "rawlist",
-      message: "What would you like to do?",
+      message: "Welcome to Auto. What would you like to do?",
       choices: [
         "GPO Shops",
         "Pull OYV2 Extracts",
@@ -60,7 +59,11 @@ function askHotels() {
       askHotels();
     } else {
       let data = JSON.stringify(hotelsarray)
+      console.log("===============================================================");
+      console.log("");
       console.log('Current hotels:', hotelsarray.join(', '));
+      console.log("");
+      console.log("===============================================================");
       fs.writeFileSync('./data.json', data)
       return mochaGPO();
     }
@@ -76,9 +79,10 @@ var observe = Observable.create(function (obs) {
   });
 
   obs.next({
-    type: 'input',
+    type: 'password',
     name: 'password',
     message: "What's your password",
+    mask: '*',
   });
 
   obs.complete();
@@ -124,7 +128,11 @@ function askHotelsExtract() {
       askHotelsExtract();
     } else {
       let data = JSON.stringify(hotelsarray)
+      console.log("===============================================================");
+      console.log("");
       console.log('Current hotels:', hotelsarray.join(', '));
+      console.log("");
+      console.log("===============================================================");
       fs.writeFileSync('./data.json', data)
       return mochaExtract();
     }
@@ -140,9 +148,10 @@ var observeExtract = Observable.create(function (obs) {
   });
 
   obs.next({
-    type: 'input',
+    type: 'password',
     name: 'password',
     message: "What's your password",
+    mask: '*',
   });
 
   obs.complete();
