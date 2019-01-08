@@ -1,9 +1,18 @@
+var credentials = require('./login.json');
+
 //credentials in app-env
 var eid = credentials.eid;
 var password = credentials.password;
 // var eid = process.env.EID;
 // var password = process.env.PASSWORD;
 var url = process.env.URL;
+
+var fs = require('fs');
+var moment = require('moment');
+var path = require('path');
+var userName = process.env['USERPROFILE'].split(path.sep)[2];
+var loginId = path.join(userName);
+
 
 //extracts array
 // var marsha = require("./data").extract;
@@ -19,7 +28,10 @@ const timeOut = 90000;
 var extract;
 var firefox = require("selenium-webdriver/firefox");
 var path = require("path");
-var myDownloadFolder = path.normalize(__dirname + "/../Downloads/");
+// var myDownloadFolder = path.normalize(__dirname + 'Users/' + loginId + '/Desktop/GPO ' + moment().format('MM-DD-YYYY'));
+var myDownloadFolder = path.normalize('C:/Users/' + loginId + '/Desktop/Extracts ' + moment().format('MM-DD-YYYY') + '\\');
+console.log(myDownloadFolder);
+// var myDownloadFolder = path.normalize(__dirname + "/../Downloads/");
 
 // Create Firefox Profile
 var profile = new firefox.Profile();
@@ -28,37 +40,50 @@ profile.setPreference("browser.download.dir", myDownloadFolder);
 profile.setPreference(
   "browser.helperApps.neverAsk.saveToDisk",
   "application/vnd.ms-excel"
-);
-
-// disable Firefox's built-in PDF viewer
-profile.setPreference("pdfjs.disabled", true);
-var options = new firefox.Options().setProfile(profile);
-var driver = new webdriver.Builder();
-
-//Build Webdriver with Firefox profile setup
-test.describe("Pull OYV2 Extracts", function() {
-  test.before(function() {
-    this.timeout(timeOut);
-    driver = new webdriver.Builder()
+  );
+  
+  // disable Firefox's built-in PDF viewer
+  profile.setPreference("pdfjs.disabled", true);
+  var options = new firefox.Options().setProfile(profile);
+  var driver = new webdriver.Builder();
+  
+  //Build Webdriver with Firefox profile setup
+  test.describe("Pull OYV2 Extracts", function() {
+    test.before(function() {
+      this.timeout(timeOut);
+      driver = new webdriver.Builder()
       .forBrowser("firefox")
       .setFirefoxOptions(options)
       .build();
-  });
-
-  //Quit after last case finishes
-  after(async () => driver.quit());
-
-  //Login
-  test.it("login successful", function() {
-    this.timeout(timeOut);
-    driver.get(url);
-    driver.findElement(webdriver.By.name("username")).sendKeys(eid);
-    driver.findElement(webdriver.By.name("password")).sendKeys(password);
-    driver.findElement(webdriver.By.css("button.btn.btn-block")).click();
-  });
-
-  //Loop to pull all extracts
-  marsha.forEach(s => {
+    });
+    
+    //Create folder for extracts
+    test.before( function () {
+      // var fs = require('fs');
+      // var moment = require('moment');
+      // var path = require('path');
+      // var userName = process.env['USERPROFILE'].split(path.sep)[2];
+      // var loginId = path.join(userName);
+  
+      var dir = 'C:/Users/' + loginId + '/Desktop/Extracts ' + moment().format('MM-DD-YYYY') + '\\';
+      
+      !fs.existsSync(dir) && fs.mkdirSync(dir);
+      });
+    
+    //Quit after last case finishes
+    after(async () => driver.quit());
+    
+    //Login
+    test.it("login successful", function() {
+      this.timeout(timeOut);
+      driver.get(url);
+      driver.findElement(webdriver.By.name("username")).sendKeys(eid);
+      driver.findElement(webdriver.By.name("password")).sendKeys(password);
+      driver.findElement(webdriver.By.css("button.btn.btn-block")).click();
+    });
+    
+    //Loop to pull all extracts
+    marsha.forEach(s => {
     test.describe("Pull Extract for " + s, function() {
       test.before(function() {
         this.timeout(timeOut);
@@ -93,6 +118,7 @@ test.describe("Pull OYV2 Extracts", function() {
 
         driver.sleep(45000).then(function test() {
           const testFolder = myDownloadFolder;
+          // const testFolder = dir;
           const fs = require("fs");
 
           //Checking for file in app downloads folder
@@ -107,6 +133,7 @@ test.describe("Pull OYV2 Extracts", function() {
                 console.log("Going into Overtime");
                 driver.sleep(30000).then(function test() {
                   const testFolder = myDownloadFolder;
+                  // const testFolder = dir;
                   const fs = require("fs");
                   fs.readdir(testFolder, (err, files) => {
                     files.forEach(file => {

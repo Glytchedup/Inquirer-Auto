@@ -3,6 +3,7 @@ var fs = require('fs');
 var {
   Observable
 } = require('rxjs');
+import * as folderMaker from './folder_makers'
 var hotelsarray = [];
 
 runSearch();
@@ -97,6 +98,7 @@ function askID() {
 }
 
 function mochaGPO() {
+  folderMaker.folderGPO();
   console.log('now call mocha GPO.js')
   console.log('Current hotels:', hotelsarray.join(', '));
 }
@@ -161,6 +163,7 @@ function askIDExtract() {
 }
 
 function mochaExtract() {
+folderMaker.folderExtract();
   console.log('now call mocha Extract.js')
   console.log('Current hotels:', hotelsarray.join(', '));
 }
