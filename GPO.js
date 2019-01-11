@@ -5,8 +5,8 @@ var credentials = require('./login.json');
 // var password = process.env.PASSWORD;
 var eid = credentials.eid;
 var password = credentials.password;
-var url = process.env.URL;
-var gpourl = process.env.GPOURL;
+var url = "https://salesnet.marriott.com/oys/ym/oy/OysController/signIn";
+var gpourl = "https://salesnet.marriott.com/oystotalyield/pricingclient/tyPricingClientContainerContent/displayTYPricingClientContainer";
 
 var fs = require('fs');
 var moment = require('moment');
@@ -63,8 +63,12 @@ test.describe("gpoShop", function() {
       .build();
   });
 
+
   //Quit after last case finishes
-  after(async () => driver.quit());
+  // after(async () => driver.quit());
+  after(async () => driver.quit()
+);
+
 
   //Login
   test.it("login successful", function() {
@@ -307,7 +311,7 @@ test.describe("gpoShop", function() {
           )
           .then(_ => driver.sleep(2000));
 
-        driver.sleep(3000).then(function test() {
+        driver.sleep(5000).then(function test() {
           const testFolder = myDownloadFolder;
           const fs = require("fs");
 

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "selenium.js",
+  "bin": "bin.js",
   "dependencies": {
     "async": "^2.0.0",
     "dotenv": "^6.2.0",
@@ -14,6 +15,7 @@
     "inquirer": "^6.2.1",
     "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.17.0",
+    "mocha-junit": "^0.4.0",
     "moment": "^2.23.0",
     "path": "^0.12.7",
     "protractor": "^5.4.2",

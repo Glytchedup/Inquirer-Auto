@@ -3,9 +3,7 @@ var credentials = require('./login.json');
 //credentials in app-env
 var eid = credentials.eid;
 var password = credentials.password;
-// var eid = process.env.EID;
-// var password = process.env.PASSWORD;
-var url = process.env.URL;
+var url = "https://salesnet.marriott.com/oys/ym/oy/OysController/signIn";
 
 var fs = require('fs');
 var moment = require('moment');
@@ -94,7 +92,7 @@ profile.setPreference(
         driver.get(url);
         driver.findElement(By.id("propertyCodeText")).sendKeys(s);
         driver.findElement(By.css("b > a")).click();
-        driver.sleep(5000).then(function() {
+        driver.sleep(8000).then(function() {
           return driver.wait(
             until.elementLocated(By.id("dijit__TemplatedMixin_0")),
             20000
