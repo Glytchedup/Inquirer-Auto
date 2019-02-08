@@ -118,11 +118,11 @@ function mochaGPO() {
       console.log('.');
     })
     .on('pass', function (test) {
-      console.log('Test passed');
+      console.log('Shop Suceeded');
       // console.log(test);
     })
     .on('fail', function (test, err) {
-      console.log('Test fail');
+      console.log('Shop may have failed - check for file');
       // console.log(test);
       console.log(err);
     })
@@ -140,7 +140,7 @@ var questionsExtract = [{
   {
     type: 'confirm',
     name: 'askAgain',
-    message: 'Want to enter another hotel (just hit enter for YES)?',
+    message: 'Want to enter another hotel? (just hit enter for YES)',
     default: true
   }
 ];

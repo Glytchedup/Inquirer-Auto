@@ -65,3 +65,4 @@ app-env
 Downloads/*
 !Downloads/.gitkeep
 login.json
+FirefoxPortable/*

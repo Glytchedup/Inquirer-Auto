@@ -1,4 +1,6 @@
 var credentials = require('./login.json');
+require('geckodriver');
+// require('./geckodriver.exe');
 
 //credentials in app-env
 var eid = credentials.eid;
@@ -19,8 +21,8 @@ var marsha = require("./data.json");
 //Webdriver setup
 var assert = require("assert");
 var webdriver = require("selenium-webdriver"),
-  By = webdriver.By,
-  until = webdriver.until;
+By = webdriver.By,
+until = webdriver.until;
 var test = require("selenium-webdriver/testing");
 const timeOut = 1000000;
 var extract;
