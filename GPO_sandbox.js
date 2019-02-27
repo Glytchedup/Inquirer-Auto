@@ -307,19 +307,19 @@ test.describe("gpoShop", function () {
             'let ele=document.evaluate("//div[@class=\'container\']//table[2]//tbody[1]//tr[5]//td[7]",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;var clickEvent=document.createEvent("MouseEvents");clickEvent.initEvent("dblclick",!0,!0),ele.dispatchEvent(clickEvent);';
  
             // 1ST 5 DAYS
-        driver.executeScript(tues).then(function (return_value) {})
-          .then(_ => driver.executeScript(fri).then(function (return_value) {}))
-          .then(_ => driver.executeScript(sun).then(function (return_value) {}))
-          .then(_ => driver.executeScript(tues2).then(function (return_value) {}))
-          .then(_ => driver.executeScript(fri2).then(function (return_value) {}))
-          .then(_ => driver.executeScript(sun2).then(function (return_value) {}));
+        // driver.executeScript(tues).then(function (return_value) {})
+        //   .then(_ => driver.executeScript(fri).then(function (return_value) {}))
+        //   .then(_ => driver.executeScript(sun).then(function (return_value) {}))
+        //   .then(_ => driver.executeScript(tues2).then(function (return_value) {}))
+        //   .then(_ => driver.executeScript(fri2).then(function (return_value) {}))
+        //   .then(_ => driver.executeScript(sun2).then(function (return_value) {}));
 
         //2ND 5 DAYS
-        // driver.executeScript(tues3).then(function (return_value) {})
-        //   .then(_ => driver.executeScript(fri3).then(function (return_value) {}))
-        //   .then(_ => driver.executeScript(sun3).then(function (return_value) {}))
-        //   .then(_ => driver.executeScript(tues4).then(function (return_value) {}))
-        //   .then(_ => driver.executeScript(fri4).then(function (return_value) {}));
+        driver.executeScript(tues3).then(function (return_value) {})
+          .then(_ => driver.executeScript(fri3).then(function (return_value) {}))
+          .then(_ => driver.executeScript(sun3).then(function (return_value) {}))
+          .then(_ => driver.executeScript(tues4).then(function (return_value) {}))
+          .then(_ => driver.executeScript(fri4).then(function (return_value) {}));
 
         // //3rd 5 DAYS
         // driver.executeScript(tues4).then(function (return_value) {})
