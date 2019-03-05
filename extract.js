@@ -85,7 +85,8 @@ profile.setPreference(
         driver
           .manage()
           .window()
-          .setSize(1280, 720);
+          // .setSize(1280, 720);
+          .setSize(1024, 768);
       });
 
       test.it("Pull Extract", function(done, err) {

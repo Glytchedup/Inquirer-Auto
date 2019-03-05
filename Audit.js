@@ -7,6 +7,9 @@ var eid = credentials.eid;
 var password = credentials.password;
 var url = "https://salesnet.marriott.com/oys/ym/oy/OysController/signIn";
 
+var landitID = 'grmrs.hq@marriott.com'
+var landitP = 'marriott'
+
 var fs = require('fs');
 var moment = require('moment');
 var path = require('path');
@@ -60,7 +63,7 @@ profile.setPreference(
     //Create folder for extracts
     test.before( function () {
   
-      var dir = 'C:/Users/' + loginId + '/Desktop/Extracts ' + moment().format('MM-DD-YYYY') + '\\';
+      var dir = 'C:/Users/' + loginId + '/Desktop/Audit Files' + moment().format('MM-DD-YYYY') + '\\';
       
       !fs.existsSync(dir) && fs.mkdirSync(dir);
       });
@@ -79,7 +82,7 @@ profile.setPreference(
     
     //Loop to pull all extracts
     marsha.forEach(s => {
-    test.describe("Pull Extract for " + s, function() {
+    test.describe("Pull Audit files for " + s, function() {
       test.before(function() {
         this.timeout(timeOut);
         driver
@@ -150,6 +153,71 @@ profile.setPreference(
           });
         });
       });
+
+      test.it("Pull OY Screenshots", function(done, err) {
+    // navigate to rate tab
+
+    // click thresholds  /html/body/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/div[1]/div[2]/div[3]/div[1]/div[1]/span[1]
+
+// take screenshot
+driver.takeScreenshot().then(
+  function(image, err) {
+      require('fs').writeFile('RPO-threshold.png', image, 'base64', function(err) {
+          console.log(err);
+      });
+  }
+
+//collapse top section > switch to comp setup tab > scroll down 5 lines
+// screenshot - name comp setup and rate floor and ceiling
+//select General Setup > zoom out > screenshot whole thing
+//Non-ERS --> click Inventory > Gear > Settings > screenshot IO-Settings
+//ERS --> Don't know yet
+//go to room collections > https://salesnet.marriott.com/oys/ym/oy/OysController/settings/roomCollections
+//scroll down and screenshot - Room Collections
+
+);
+      });
+
+test.it("Supernova", function(done, err) {
+  this.timeout(timeOut);
+  driver.get('https://marriott.supernova.travel/login');
+  driver.findElement(webdriver.By.name("email")).sendKeys(landitID);
+  driver.findElement(webdriver.By.name("password")).sendKeys(landitP);
+  driver.findElement(webdriver.By.css("button.btn.btn-block")).click();
+
+  //figure out how to navigate to the hotel
+//or
+//download report and extract specific hotel
+      
+});
+
+test.it("GPO-Settings", function(done, err) {
+//go to https://salesnet.marriott.com/oys/ym/oy/OysController/pricing/grouppricing/setup
+//seasons pull from extract
+//click other business rules > zoom out > screenshot GPO business rules 
+//screnshit seasons for hig low?  
+});
+
+test.it("Total-Hotel-Calendar", function(done, err) {
+  //go to https://salesnet.marriott.com/oys/ym/oy/OysController/forecast/outlookPage
+// click setup > Distressed Rooms Threshold --- can we get this somewher else???
+//Do we need to pull shots of these graphs?
+});
+
+test.it("ICD-Dates", function(done, err) {
+// go to https://extranet.marriott.com/hpp/rma/token-RUlEOmRya3ViMjk0O1BST1BFUlRZQ09ERTpNUllTSDtFUlM6ZmFsc2U7T0ZGRVJJRDo7/home.action?currentMarshaCode= + s
+// go to https://extranet.marriott.com/hpp/rma/token-RUlEOmRya3ViMjk0O1BST1BFUlRZQ09ERTpQQUhDWTtFUlM6ZmFsc2U7T0ZGRVJJRDo7/preference/Preference_showDates
+// zoom out 3x > screenshot
+});
+
+test.it("Land It", function(done, err) {
+  
+});
+
+test.it("Land It", function(done, err) {
+  
+});
+
     });
   });
 });
