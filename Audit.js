@@ -81,7 +81,6 @@ profile.setPreference(
     });
     
     //Loop to pull all extracts
-    marsha.forEach(s => {
     test.describe("Pull Audit files for " + s, function() {
       test.before(function() {
         this.timeout(timeOut);
@@ -155,6 +154,37 @@ profile.setPreference(
       });
 
       test.it("Pull OY Screenshots", function(done, err) {
+
+        this.timeout(timeOut);
+        driver.get(url);
+        driver.findElement(By.id("propertyCodeText")).sendKeys(s);
+        driver.findElement(By.css("b > a")).click();
+        driver.sleep(8000).then(function() {
+          return driver.wait(
+            until.elementLocated(By.id("dijit__TemplatedMixin_2")),
+            20000
+          );
+        });
+        
+
+        // Scroll to the bottom
+        driver.sleep(2000);
+        driver.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        driver.sleep(2000);
+
+
+        driver.findElement(By.xpath("/html/body/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td/div/div/div/div/div/div/div[3]/div[3]/div/div[2]/div[1]/div[6]")).click();
+        driver.findElement(By.id("dijit__TemplatedMixin_0")).click();
+        driver.sleep(10000).then(function() {
+          return driver.wait(
+            until.elementLocated(By.css("span.icon.settings-button")),
+            20000
+          );
+        });
+        driver.findElement(By.css("span.icon.settings-button")).click();
+        driver.findElement(By.css("#dijit_MenuItem_3_text")).click();
+
+
     // navigate to rate tab
 
     // click thresholds  /html/body/table/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/div[1]/div[2]/div[3]/div[1]/div[1]/span[1]
@@ -219,5 +249,4 @@ test.it("Land It", function(done, err) {
 });
 
     });
-  });
 });
